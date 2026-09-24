@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matchup Room</title>
+<meta name="description" content="Fantasy football start/sit calls backed by the matchup: the cornerback, the coverage, the trenches. Join the Matchup Room waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#EEF1EE; --surface:#FFFFFF; --surface2:#E3E8E4; --ink:#14201A; --muted:#55665D; --line:#CFD8D2;
+  --accent:#2446D8; --accent-ink:#FFFFFF; --accent-soft:#E2E7FB;
+  --good:#1D8A4B; --good-soft:#DDF1E5; --warn:#B7800A; --warn-soft:#F6ECD2; --bad:#C23A2E; --bad-soft:#F6DEDB;
+  --field:#12301F; --field-ink:#F2F6F3;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1513; --surface:#18211E; --surface2:#222D29; --ink:#E8EEEA; --muted:#98A9A0; --line:#2E3A35;
+    --accent:#7D95FF; --accent-ink:#0B1030; --accent-soft:#1E2748;
+    --good:#4CC57F; --good-soft:#163323; --warn:#E3B13E; --warn-soft:#3A2F12; --bad:#F0705F; --bad-soft:#3D1D19;
+    --field:#0B1F14; --field-ink:#E8EEEA;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1513; --surface:#18211E; --surface2:#222D29; --ink:#E8EEEA; --muted:#98A9A0; --line:#2E3A35;
+  --accent:#7D95FF; --accent-ink:#0B1030; --accent-soft:#1E2748;
+  --good:#4CC57F; --good-soft:#163323; --warn:#E3B13E; --warn-soft:#3A2F12; --bad:#F0705F; --bad-soft:#3D1D19;
+  --field:#0B1F14; --field-ink:#E8EEEA;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:.95;margin:0;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.brand{font-family:var(--display);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.03em}
+.brand span{color:var(--accent)}
+.nav a.cta-sm{font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--accent);padding:7px 12px;border-radius:8px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:40px 64px}
+.hero h1{font-size:clamp(52px,9vw,104px);font-weight:800}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .sub{font-size:19px;color:var(--muted);max-width:34em;margin:20px 0 28px}
+.form{display:flex;gap:8px;flex-wrap:wrap;max-width:480px}
+.form input{flex:1 1 220px;min-width:0;font:inherit;font-size:16px;padding:14px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.form input:focus-visible,.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{font:inherit;font-weight:600;font-size:16px;border:0;border-radius:10px;padding:14px 20px;cursor:pointer;background:var(--accent);color:var(--accent-ink);white-space:nowrap}
+.fine{font-size:13px;color:var(--muted);margin-top:10px}
+.ok{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--good-soft);color:var(--good);font-weight:600;max-width:480px}
+.err{margin-top:12px;color:var(--bad);font-size:14px}
+
+/* card mock */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 18px 40px -24px rgba(20,32,26,.35);display:flex;flex-direction:column;gap:14px;max-width:420px;justify-self:end;width:100%}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card .name{font-family:var(--display);font-weight:800;font-size:30px;text-transform:uppercase;line-height:1}
+.card .meta{font-size:13px;color:var(--muted)}
+.grade{font-family:var(--display);font-weight:800;font-size:40px;width:72px;height:72px;border-radius:12px;display:grid;place-items:center;background:var(--good-soft);color:var(--good);font-variant-numeric:tabular-nums}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--good-soft);color:var(--good)}
+.f{display:grid;gap:4px}
+.f-top{display:flex;justify-content:space-between;font-size:13.5px}
+.f-top b{font-family:var(--mono);font-weight:500}
+.bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px}
+.receipt{border-top:1px dashed var(--line);padding-top:12px;font-size:13.5px;color:var(--muted)}
+.receipt strong{color:var(--ink)}
+.example{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+/* field band */
+.band{background:var(--field);color:var(--field-ink);position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 79px,rgba(255,255,255,.07) 79px 81px);pointer-events:none}
+.band .wrap{position:relative;padding-block:64px}
+.band h2{font-size:clamp(36px,5.5vw,60px);font-weight:800;max-width:14em}
+.band .eyebrow{color:rgba(242,246,243,.7)}
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.layer{border-top:3px solid rgba(242,246,243,.85);padding-top:14px}
+.layer .yd{font-family:var(--mono);font-size:12px;opacity:.7}
+.layer h3{font-size:24px;font-weight:700;margin:6px 0 8px}
+.layer p{margin:0;font-size:14.5px;opacity:.85}
+
+/* features */
+.section{padding-block:72px}
+.section h2{font-size:clamp(34px,5vw,54px);font-weight:800}
+.section .lead{color:var(--muted);max-width:40em;margin:14px 0 0;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.feat h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+
+/* ledger */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.ledger > div,.hero > *{min-width:0}
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+.hit{color:var(--good);font-weight:600}.miss{color:var(--bad);font-weight:600}
+
+/* founder */
+.founder{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;background:var(--accent-soft);border-radius:16px;padding:28px}
+.mono-badge{font-family:var(--display);font-weight:800;font-size:34px;width:72px;height:72px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.founder p{margin:8px 0 0;max-width:44em}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-family:var(--mono);color:var(--muted)}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--muted);max-width:44em}
+.faq{max-width:760px;margin-top:24px}
+
+/* final cta */
+.final{text-align:left;padding-block:72px;border-top:1px solid var(--line)}
+.final h2{font-size:clamp(40px,6vw,72px);font-weight:800;margin-bottom:22px}
+footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;border-top:1px solid var(--line)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:36px;padding-block:24px 48px}
+  .card{justify-self:start}
+  .layers{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .ledger{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .layers{grid-template-columns:1fr}
+  .founder{grid-template-columns:1fr}
+  .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:no-preference){
+  .bar i{animation:grow .9s ease-out both}
+  @keyframes grow{from{width:0}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <div class="brand">Matchup<span>Room</span></div>
+    <a class="cta-sm" href="#join">Join the waitlist</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Fantasy football · Start / Sit / Waivers</p>
+      <h1>Start the right guy. <em>See the receipts.</em></h1>
+      <p class="sub">Every start/sit call backed by the matchup: the cornerback he'll see, the coverage he'll face, the line that has to block for him. Ten seconds, not ten tabs.</p>
+      <form class="form" id="join" data-form>
+        <label for="email-hero" class="eyebrow" style="flex-basis:100%">Get early access</label>
+        <input id="email-hero" name="email_address" type="email" autocomplete="email" placeholder="you@email.com" required>
+        <button class="btn" type="submit">Join the waitlist</button>
+      </form>
+      <p class="fine">Free to join. Founding members get locked-in launch pricing. No spam, unsubscribe anytime.</p>
+      <div class="ok" data-ok hidden>You're in the room. Watch your inbox for the first matchup report.</div>
+      <div class="err" data-err hidden>That didn't go through. Check the email address and try again.</div>
+    </div>
+
+    <aside class="card" aria-label="Example matchup card">
+      <div class="example">Example card · sample player</div>
+      <div class="card-top">
+        <div>
+          <div class="name">D. Cole</div>
+          <div class="meta">WR · vs zone-heavy defense · Week 4</div>
+        </div>
+        <div class="grade" aria-label="Matchup score 70">70</div>
+      </div>
+      <div><span class="tag">Smash start</span></div>
+      <div class="f"><div class="f-top"><span>vs projected CB</span><b>78</b></div><div class="bar"><i style="width:78%;background:var(--good)"></i></div></div>
+      <div class="f"><div class="f-top"><span>vs coverage scheme</span><b>70</b></div><div class="bar"><i style="width:70%;background:var(--good)"></i></div></div>
+      <div class="f"><div class="f-top"><span>Protection vs pass rush</span><b>55</b></div><div class="bar"><i style="width:55%;background:var(--warn)"></i></div></div>
+      <div class="f"><div class="f-top"><span>Usage trend</span><b>74</b></div><div class="bar"><i style="width:74%;background:var(--good)"></i></div></div>
+      <div class="receipt"><strong>The receipt:</strong> lines up outside left on 64% of routes, right where a CB allowing 1.68 yards per coverage snap plays. 15 catches for 241 yards in three career games against him.</div>
+    </aside>
+  </header>
+</div>
+
+<section class="band" aria-labelledby="layers-h">
+  <div class="wrap">
+    <p class="eyebrow">What's inside every call</p>
+    <h2 id="layers-h">Rankings tell you who. We show you why.</h2>
+    <div class="layers">
+      <div class="layer"><div class="yd">Layer 01</div><h3>The corner</h3><p>Who he's projected to see, how often, and what happened the last time they met.</p></div>
+      <div class="layer"><div class="yd">Layer 02</div><h3>The scheme</h3><p>Man or zone, blitz rate, coverage shells, and how this player does against each.</p></div>
+      <div class="layer"><div class="yd">Layer 03</div><h3>The trenches</h3><p>His offensive line against their pass rush and run front. It moves QBs, RBs and WRs alike.</p></div>
+      <div class="layer"><div class="yd">Layer 04</div><h3>The role</h3><p>Snap share, routes, targets and game script. Is his usage rising or fading?</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="section" aria-labelledby="feat-h">
+    <p class="eyebrow">Built for Sunday morning</p>
+    <h2 id="feat-h">One screen. One verdict. Tap for the tape.</h2>
+    <p class="lead">No spreadsheets and no 40-tab research sessions. Matchup Room gives you the call first and the evidence right behind it.</p>
+    <div class="grid">
+      <div class="feat"><h3>Start/Sit verdicts</h3><p>Compare two or three players and get a clear call, a confidence level, and the matchup reasons side by side.</p></div>
+      <div class="feat"><h3>Waiver radar</h3><p>Catch risers before the breakout game: route share, snap trends, and the next three matchups.</p></div>
+      <div class="feat"><h3>Matchup alerts</h3><p>When an inactive or injury flips a matchup before kickoff, you hear about it in time to swap.</p></div>
+      <div class="feat"><h3>Your league, synced</h3><p>Bring your roster in from Sleeper, ESPN or Yahoo and see every call for your actual team.</p></div>
+      <div class="feat"><h3>Shareable cards</h3><p>One tap turns any matchup into a card for the group chat or your story.</p></div>
+      <div class="feat"><h3>Ask the analyst</h3><p>Ask "Nabers or Pittman?" and get a straight answer, grounded in the data.</p></div>
+    </div>
+  </section>
+
+  <section class="section ledger" aria-labelledby="ledger-h" style="padding-top:0">
+    <div>
+      <p class="eyebrow">The receipts ledger</p>
+      <h2 id="ledger-h">Every call. On the record.</h2>
+      <p class="lead">Most advice disappears after Sunday. Ours doesn't. Every verdict gets graded after the games, including the misses, so you know exactly how much to trust us.</p>
+    </div>
+    <div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Call</th><th>Verdict</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>WR vs slot rookie</td><td>Start</td><td class="hit">Hit · 21.4 pts</td></tr>
+            <tr><td>QB vs top pass rush</td><td>Sit</td><td class="hit">Hit · 9.8 pts</td></tr>
+            <tr><td>RB vs soft run front</td><td>Start</td><td class="hit">Hit · 18.1 pts</td></tr>
+            <tr><td>WR vs shadow CB</td><td>Sit</td><td class="miss">Miss · 16.0 pts</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Example of how the ledger will look. The real one starts with our first week of calls.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="founder-h" style="padding-top:0">
+    <div class="founder">
+      <div class="mono-badge" aria-hidden="true">G</div>
+      <div>
+        <p class="eyebrow">Who's behind it</p>
+        <h2 id="founder-h" style="font-size:clamp(30px,4vw,44px)">Built by Gabe, from Gabe Performs</h2>
+        <p>I make football and fantasy videos, and the question I get most is always "who do I start?" Matchup Room is the tool I wanted: the real matchup data behind every answer, fast enough to use on your phone before kickoff. Follow along at <a href="https://www.instagram.com/matchuproom/">@matchuproom</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-h" style="padding-top:0">
+    <p class="eyebrow">Questions</p>
+    <h2 id="faq-h">The fine print</h2>
+    <div class="faq">
+      <details><summary>When can I use it?</summary><p>Waitlist members get first access to a free beta during the fantasy playoffs. The full app launches before 2027 draft season.</p></details>
+      <details><summary>How much will it cost?</summary><p>There will be a free tier. Pro will cost less than most fantasy subscriptions, and founding members from this waitlist get locked-in launch pricing.</p></details>
+      <details><summary>Which leagues does it work with?</summary><p>Any league. You can look up any player. League sync starts with Sleeper, then ESPN and Yahoo.</p></details>
+      <details><summary>Where does the data come from?</summary><p>Play-by-play, charting and usage data from licensed and open NFL data sources, turned into one matchup score with the reasons shown.</p></details>
+    </div>
+  </section>
+
+  <section class="final" aria-labelledby="final-h">
+    <h2 id="final-h">Get in the room before kickoff.</h2>
+    <form class="form" data-form>
+      <label for="email-final" class="eyebrow" style="flex-basis:100%">Join the waitlist</label>
+      <input id="email-final" name="email_address" type="email" autocomplete="email" placeholder="you@email.com" required>
+      <button class="btn" type="submit">Join the waitlist</button>
+    </form>
+    <div class="ok" data-ok hidden>You're in the room. Watch your inbox for the first matchup report.</div>
+    <div class="err" data-err hidden>That didn't go through. Check the email address and try again.</div>
+  </section>
+
+  <footer>
+    <span>© 2026 Matchup Room</span>
+    <span>Contact: matchuproom@gmail.com</span>
+    <span>Not affiliated with the NFL or any team.</span>
+  </footer>
+</div>
+
+<script>
+/* Paste the Kit form ID here once the Kit form exists (Kit → Grow → Landing Pages & Forms → your form → Embed). */
+const KIT_FORM_ID = "9959058";
+
+document.querySelectorAll("[data-form]").forEach(form => {
+  const box = form.closest("div, section");
+  const ok = box.querySelector("[data-ok]");
+  const err = box.querySelector("[data-err]");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    err.hidden = true;
+    const email = form.querySelector("input[type=email]").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.hidden = false; return; }
+    const btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Joining…";
+    try {
+      if (KIT_FORM_ID) {
+        const body = new FormData(); body.append("email_address", email);
+        await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, { method: "POST", body, mode: "no-cors" });
+      }
+      form.hidden = true; ok.hidden = false;
+    } catch (_) {
+      err.hidden = false; btn.disabled = false; btn.textContent = "Join the waitlist";
+    }
+  });
+});
+</script>
+</body>
+</html>
