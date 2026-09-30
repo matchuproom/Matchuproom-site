@@ -9,7 +9,7 @@
 <meta property="og:title" content="Matchup Room">
 <meta property="og:description" content="Start the right guy. See why. Fantasy football start/sit calls backed by the matchup.">
 <title>Matchup Room</title>
-<meta name="description" content="Fantasy football start/sit calls backed by the matchup: the cornerback, the coverage, the trenches. Join the Matchup Room waitlist.">
+<meta name="description" content="Fantasy football start/sit calls backed by the matchup: the cornerback, the coverage, the trenches, the usage. Every call graded in public. Try it free.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -191,6 +191,34 @@ details p{margin:10px 0 0;color:var(--muted);max-width:44em}
 /* final cta */
 .final{text-align:left;padding-block:72px;border-top:1px solid var(--line)}
 .final h2{font-size:clamp(40px,6vw,72px);font-weight:800;margin-bottom:22px}
+/* app CTAs */
+.ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn.big{font-size:18px;padding:16px 26px}
+.stage .nav a.cta-sm.solid,.nav a.cta-sm.solid{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.hero .or{margin:22px 0 10px}
+/* record strip */
+.record{display:flex;gap:28px;flex-wrap:wrap;margin:18px 0 6px}
+.record div{display:flex;flex-direction:column}
+.record b{font-family:var(--display);font-weight:800;font-size:44px;line-height:1}
+.record span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.plan.best{border:2px solid var(--accent);box-shadow:0 18px 40px -24px rgba(36,70,216,.45)}
+.plan h3{font-size:26px;font-weight:800}
+.plan .price{font-family:var(--display);font-weight:800;font-size:52px;line-height:1}
+.plan .price small{display:block;font-family:var(--body);font-size:14px;font-weight:500;color:var(--muted);margin-top:6px}
+.plan .btn{margin-top:auto}
+.plan .note{margin-top:0!important}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.stage .btn.ghost{color:#fff;border-color:rgba(255,255,255,.45)}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.plan li{display:flex;gap:8px}.plan li::before{content:"✓";color:var(--good);font-weight:700}
+.plan .note{font-size:13px;color:var(--muted);margin-top:auto}
+.plan .tag{align-self:flex-start;background:var(--accent-soft);color:var(--accent)}
+.code{font-family:var(--mono);font-weight:500;background:var(--accent-soft);color:var(--accent);padding:1px 6px;border-radius:4px}
+@media (max-width:860px){.plans{grid-template-columns:1fr}}
 footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;border-top:1px solid var(--line)}
 
 @media (max-width:860px){
@@ -218,21 +246,25 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
 <div class="wrap">
   <nav class="nav" aria-label="Main">
     <div class="brand"><svg class="mark" viewBox="26 52 148 96" aria-hidden="true"><polygon points="30,56 66,56 94,100 66,144 30,144 58,100" fill="var(--accent)"/><polygon points="170,56 134,56 106,100 134,144 170,144 142,100" fill="var(--ink)"/></svg><span style="color:inherit">Matchup<span>Room</span></span></div>
-    <a class="cta-sm" href="#join">Join the waitlist</a>
+    <a class="cta-sm solid" href="https://app.matchuproom.com">Open the app</a>
   </nav>
 
   <header class="hero">
     <div>
       <p class="eyebrow">Fantasy football · Start/Sit · Waivers · Trades</p>
       <h1>Start the right guy. <em>See why.</em></h1>
-      <p class="sub">Every start/sit call backed by the matchup: the cornerback he'll see, the coverage he'll face, the line that has to block for him. Ten seconds, not ten tabs.</p>
-      <form class="form" id="join" data-form>
-        <label for="email-hero" class="eyebrow" style="flex-basis:100%">Get early access</label>
+      <p class="sub">Every start/sit call backed by the matchup: the cornerback he'll see, the coverage he'll face, the line that has to block for him, and how much the offense runs through him. Ten seconds, not ten tabs.</p>
+      <div class="ctas">
+        <a class="btn big" href="https://app.matchuproom.com">Try it free</a>
+        <a class="btn ghost big" href="#pricing">See Premium</a>
+      </div>
+      <p class="fine">No card needed. Works on your phone, in any league.</p>
+      <form class="form or" id="join" data-form>
+        <label for="email-hero" class="eyebrow" style="flex-basis:100%">Or get the weekly Scorecard by email</label>
         <input id="email-hero" name="email_address" type="email" autocomplete="email" placeholder="you@email.com" required>
-        <button class="btn" type="submit">Join the waitlist</button>
+        <button class="btn" type="submit">Send it to me</button>
       </form>
-      <p class="fine">Free to join. Founding members get locked-in launch pricing. No spam, unsubscribe anytime.</p>
-      <div class="ok" data-ok hidden>You're in the room. Watch your inbox for the first matchup report.</div>
+      <div class="ok" data-ok hidden>You're in. The Scorecard lands in your inbox every Monday.</div>
       <div class="err" data-err hidden>That didn't go through. Check the email address and try again.</div>
     </div>
 
@@ -251,10 +283,10 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
     <p class="eyebrow">What's inside every call</p>
     <h2 id="layers-h">Rankings tell you who. We show you why.</h2>
     <div class="layers">
-      <div class="layer"><div class="yd">Layer 01</div><h3>The corner</h3><p>Who he's projected to see, how often, and what happened the last time they met.</p></div>
+      <div class="layer"><div class="yd">Layer 01</div><h3>The corner</h3><p>The cornerbacks he's projected to see, and the yards per target receivers have gotten on each of them.</p></div>
       <div class="layer"><div class="yd">Layer 02</div><h3>The scheme</h3><p>Man or zone, blitz rate, coverage shells, and how this player does against each.</p></div>
       <div class="layer"><div class="yd">Layer 03</div><h3>The trenches</h3><p>His offensive line against their pass rush and run front. It moves QBs, RBs and WRs alike.</p></div>
-      <div class="layer"><div class="yd">Layer 04</div><h3>The role</h3><p>Snap share, routes, targets and game script. Is his usage rising or fading?</p></div>
+      <div class="layer"><div class="yd">Layer 04</div><h3>The role</h3><p>Snap share, target share, carry share and red-zone work, week by week. Is his role rising or fading?</p></div>
     </div>
   </div>
 </section>
@@ -289,21 +321,52 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
     <div>
       <p class="eyebrow">The scorecard</p>
       <h2 id="ledger-h">Every call. On the record.</h2>
-      <p class="lead">Most advice disappears after Sunday. Ours doesn't. Every verdict gets graded after the games, including the misses, so you know exactly how much to trust us.</p>
+      <p class="lead">Most advice disappears after Sunday. Ours doesn't. Every smash start and every fade locks at kickoff, then gets graded after the games, misses included, so you know exactly how much to trust us.</p>
+      <div class="record"><div><b>19–13</b><span>Week 3 record</span></div><div><b>10–8</b><span>Smash starts</span></div><div><b>9–5</b><span>Fades</span></div></div>
     </div>
     <div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Call</th><th>Verdict</th><th>Result</th></tr></thead>
           <tbody>
-            <tr><td>WR vs slot rookie</td><td>Start</td><td class="hit">Hit · 21.4 pts</td></tr>
-            <tr><td>QB vs top pass rush</td><td>Sit</td><td class="hit">Hit · 9.8 pts</td></tr>
-            <tr><td>RB vs soft run front</td><td>Start</td><td class="hit">Hit · 18.1 pts</td></tr>
-            <tr><td>WR vs shadow CB</td><td>Sit</td><td class="miss">Miss · 16.0 pts</td></tr>
+            <tr><td>Jahmyr Gibbs vs NYJ</td><td>Smash</td><td class="hit">Hit · 41.4 pts, RB1</td></tr>
+            <tr><td>Jaxon Smith-Njigba at WAS</td><td>Smash</td><td class="hit">Hit · 35.4 pts, WR1</td></tr>
+            <tr><td>Drake Maye at JAX</td><td>Fade</td><td class="hit">Hit · 3.8 pts, QB32</td></tr>
+            <tr><td>Patrick Mahomes at MIA</td><td>Smash</td><td class="miss">Miss · 15.9 pts, QB20</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="fine">Example of how the scorecard will look. The real one starts with our first week of calls.</p>
+      <p class="fine">Real Week 3 calls, PPR. A smash hits if he finishes top 12 (QB, TE) or top 24 (RB, WR); a fade hits if he doesn't. <a href="https://app.matchuproom.com">See every call in the app</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pricing" aria-labelledby="pricing-h" style="padding-top:0">
+    <p class="eyebrow">Pricing</p>
+    <h2 id="pricing-h">Free to start. Premium when it counts.</h2>
+    <p class="lead">Deep matchup data usually costs $99 to $299 a season. Premium is $29.99, less than one bad start costs you.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <ul><li>This week's board: smash, fade and sleeper</li><li>Top 12 rankings at every position</li><li>Matchup grades for every player</li><li>3 start/sit checks a week</li><li>The Scorecard and share cards</li></ul>
+        <a class="btn" href="https://app.matchuproom.com">Try it free</a>
+        <p class="note">No card needed.</p>
+      </div>
+      <div class="plan best">
+        <span class="tag">Best value</span>
+        <h3>Season pass</h3>
+        <div class="price">$29.99<small>through the Super Bowl</small></div>
+        <ul><li>Everything in Free</li><li>Full rankings and the breakdown behind every grade</li><li>Matchup Lab: corners, coverage, blitz, trenches</li><li>Usage: snaps, shares, red zone</li><li>Unlimited start/sit, My Team, Waivers, Trade, Playoffs</li></ul>
+        <a class="btn" href="https://app.matchuproom.com">Get the season pass</a>
+        <p class="note">One payment, no renewal. Code <span class="code">GABE</span> takes $10 off.</p>
+      </div>
+      <div class="plan">
+        <h3>Monthly</h3>
+        <div class="price">$4.99<small>per month</small></div>
+        <ul><li>Everything in the season pass</li><li>Renews monthly until you cancel</li><li>Cancel anytime in two taps</li></ul>
+        <a class="btn" href="https://app.matchuproom.com">Start monthly</a>
+        <p class="note">7-day full refund on your first purchase.</p>
+      </div>
     </div>
   </section>
 
@@ -323,27 +386,30 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
     <p class="eyebrow">Questions</p>
     <h2 id="faq-h">The fine print</h2>
     <div class="faq">
-      <details><summary>When can I use it?</summary><p>Waitlist members get first access to a free beta during the fantasy playoffs. The full app launches before 2027 draft season.</p></details>
-      <details><summary>How much will it cost?</summary><p>There will be a free tier. Pro will cost less than most fantasy subscriptions, and founding members from this waitlist get locked-in launch pricing.</p></details>
-      <details><summary>Which leagues does it work with?</summary><p>Any league on any platform. Add your roster once by searching your players, set your lineup spots (Superflex, kickers and defenses included), and choose PPR, half-PPR or standard.</p></details>
-      <details><summary>Where does the data come from?</summary><p>Play-by-play, charting, coverage, depth chart, injury and betting-line data from open NFL data sources, refreshed daily and turned into one matchup grade with the reasons shown.</p></details>
+      <details><summary>Can I use it right now?</summary><p>Yes. Open <a href="https://app.matchuproom.com">app.matchuproom.com</a> on your phone or computer. The free version needs no account; sign in with Google or your email to save your team and go Premium.</p></details>
+      <details><summary>How much does it cost?</summary><p>Free forever for the weekly board, top-12 rankings and 3 start/sit checks a week. Premium is $29.99 for the season (through the Super Bowl) or $4.99 a month. Code GABE takes $10 off the season pass.</p></details>
+      <details><summary>Which leagues does it work with?</summary><p>Any league on any platform. Add your roster once by searching your players, set your lineup spots (Superflex, kickers and defenses included), and choose PPR, half-PPR or standard. Automatic league sync is on the way.</p></details>
+      <details><summary>Can I cancel or get a refund?</summary><p>Monthly plans cancel anytime from your account, and you keep Premium until the month ends. Any first purchase can be fully refunded within 7 days: email matchuproom@gmail.com.</p></details>
+      <details><summary>Is there an app?</summary><p>It runs in your phone's browser. Add it to your home screen (Share, then Add to Home Screen) and it opens like an app. Store apps are coming before the 2027 draft.</p></details>
+      <details><summary>Where does the data come from?</summary><p>Play-by-play, charting, coverage, snap count, depth chart, injury and betting-line data from open NFL data sources (nflverse, FTN charting, Pro Football Reference), refreshed every few hours and turned into one matchup grade with the reasons shown.</p></details>
     </div>
   </section>
 
   <section class="final" aria-labelledby="final-h">
     <h2 id="final-h">Get in the room before kickoff.</h2>
+    <div class="ctas" style="margin-bottom:28px"><a class="btn big" href="https://app.matchuproom.com">Try it free</a></div>
     <form class="form" data-form>
-      <label for="email-final" class="eyebrow" style="flex-basis:100%">Join the waitlist</label>
+      <label for="email-final" class="eyebrow" style="flex-basis:100%">Get the weekly Scorecard by email</label>
       <input id="email-final" name="email_address" type="email" autocomplete="email" placeholder="you@email.com" required>
-      <button class="btn" type="submit">Join the waitlist</button>
+      <button class="btn" type="submit">Send it to me</button>
     </form>
-    <div class="ok" data-ok hidden>You're in the room. Watch your inbox for the first matchup report.</div>
+    <div class="ok" data-ok hidden>You're in. The Scorecard lands in your inbox every Monday.</div>
     <div class="err" data-err hidden>That didn't go through. Check the email address and try again.</div>
   </section>
 
   <footer>
-    <span>© 2026 Matchup Room</span>
-    <span>Contact: matchuproom@gmail.com</span>
+    <span>© 2026 Point Made LLC · Matchup Room</span>
+    <span><a href="https://app.matchuproom.com/terms">Terms</a> · <a href="https://app.matchuproom.com/privacy">Privacy</a> · <a href="mailto:matchuproom@gmail.com">matchuproom@gmail.com</a></span>
     <span>Not affiliated with the NFL or any team.</span>
   </footer>
 </div>
@@ -361,7 +427,7 @@ document.querySelectorAll("[data-form]").forEach(form => {
     err.hidden = true;
     const email = form.querySelector("input[type=email]").value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.hidden = false; return; }
-    const btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Joining…";
+    const btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Sending…";
     try {
       if (KIT_FORM_ID) {
         const body = new FormData(); body.append("email_address", email);
@@ -369,7 +435,7 @@ document.querySelectorAll("[data-form]").forEach(form => {
       }
       form.hidden = true; ok.hidden = false;
     } catch (_) {
-      err.hidden = false; btn.disabled = false; btn.textContent = "Join the waitlist";
+      err.hidden = false; btn.disabled = false; btn.textContent = "Send it to me";
     }
   });
 });
