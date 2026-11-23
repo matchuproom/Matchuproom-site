@@ -335,30 +335,16 @@ h2 em,h1 em{color:var(--yellow)}
 
   <section class="section" id="pricing" aria-labelledby="pricing-h" style="padding-top:0">
     <p class="eyebrow">Pricing</p>
-    <h2 id="pricing-h">Free to start. Premium when it counts.</h2>
-    <p class="lead">Deep matchup data usually costs $99 to $299 a season. The Full Room is $14.99 for the rest of the season, less than one bad start costs you.</p>
-    <div class="plans">
-      <div class="plan">
-        <h3>Free</h3>
-        <div class="price">$0</div>
-        <ul><li>This week's board: smash, fade and sleeper</li><li>Top 12 rankings at every position</li><li>Matchup grades for every player</li><li>3 start/sit checks a week</li><li>The Scorecard and share cards</li></ul>
-        <a class="btn" href="https://app.matchuproom.com">Try it free</a>
-        <p class="note">No card needed.</p>
-      </div>
+    <h2 id="pricing-h">Free for the rest of the season.</h2>
+    <p class="lead">Launch special: the Full Room is free for everyone through the Super Bowl. Create a free account and every tool unlocks. No card, no catch.</p>
+    <div class="plans" style="grid-template-columns:minmax(0,440px);justify-content:center">
       <div class="plan best">
-        <span class="tag">Best value</span>
-        <h3>Season pass</h3>
-        <div class="price">$14.99<small>the rest of the season</small></div>
-        <ul><li>Everything in Free</li><li>Full rankings and the breakdown behind every grade</li><li>Matchup Lab: corners, coverage, blitz, trenches</li><li>Usage: snaps, shares, red zone</li><li>Unlimited start/sit, My Team, Waivers, Trade, Playoffs</li></ul>
-        <a class="btn" href="https://app.matchuproom.com">Get the season pass</a>
-        <p class="note">One payment, no renewal. Code <span class="code">GABE</span> takes 20% off.</p>
-      </div>
-      <div class="plan">
-        <h3>Monthly</h3>
-        <div class="price">$4.99<small>per month</small></div>
-        <ul><li>Everything in the season pass</li><li>Renews monthly until you cancel</li><li>Cancel anytime in two taps</li></ul>
-        <a class="btn" href="https://app.matchuproom.com">Start monthly</a>
-        <p class="note">7-day full refund on your first purchase.</p>
+        <span class="tag">Launch special</span>
+        <h3>The Full Room</h3>
+        <div class="price">$0<small>through the Super Bowl</small></div>
+        <ul><li>Full rankings and the breakdown behind every grade</li><li>Matchup Lab: corners, coverage, blitz, trenches</li><li>Usage: target, air-yard and carry share, red zone</li><li>Unlimited start/sit, My Team, Waivers, Trade, Playoffs</li><li>Win odds, playoff odds and lineup alerts for your league</li></ul>
+        <a class="btn" href="https://app.matchuproom.com">Get it free</a>
+        <p class="note">Sign in with your email. Tell us what you think, it shapes what we build next.</p>
       </div>
     </div>
   </section>
@@ -380,7 +366,7 @@ h2 em,h1 em{color:var(--yellow)}
     <h2 id="faq-h">The fine print</h2>
     <div class="faq">
       <details><summary>Can I use it right now?</summary><p>Yes. Open <a href="https://app.matchuproom.com">app.matchuproom.com</a> on your phone or computer. The free version needs no account; sign in with Google or your email to save your team and go Premium.</p></details>
-      <details><summary>How much does it cost?</summary><p>Free forever for the weekly board, top-12 rankings and 3 start/sit checks a week. The Full Room is $14.99 for the rest of the season (one payment, through the Super Bowl) or $4.99 a month. Code GABE takes 20% off the season pass.</p></details>
+      <details><summary>How much does it cost?</summary><p>Right now, nothing: the Full Room is free for everyone through the Super Bowl. Just create a free account.</p></details>
       <details><summary>Which leagues does it work with?</summary><p>Connect a Sleeper or ESPN league in about a minute (private ESPN leagues too) and your rosters, matchups and free agents come in automatically. Any other platform works by adding your players yourself. PPR, half-PPR and standard, Superflex, kickers and defenses included.</p></details>
       <details><summary>Can I cancel or get a refund?</summary><p>Monthly plans cancel anytime from your account, and you keep Premium until the month ends. Any first purchase can be fully refunded within 7 days: email gabe@matchuproom.com.</p></details>
       <details><summary>Is there an app?</summary><p><span data-appstore hidden>Yes: Matchup Room is on the App Store for iPhone (Android is next). </span><span data-prelaunch>The iPhone app is in final review with Apple and lands on the App Store very soon (Android is next). </span>Until then, it runs in any phone's browser: open app.matchuproom.com, tap Share, then Add to Home Screen.</p></details>
@@ -409,7 +395,7 @@ h2 em,h1 em{color:var(--yellow)}
 
 <script>
 /* RELEASE DAY: change false to true. It shows the "Download on the App Store" buttons and the iPhone app FAQ answer. */
-const APP_STORE_LIVE = false;
+const APP_STORE_LIVE = true;
 if (APP_STORE_LIVE) {
   document.querySelectorAll("[data-appstore]").forEach(el => el.hidden = false);
   document.querySelectorAll("[data-prelaunch]").forEach(el => el.hidden = true);
