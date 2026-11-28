@@ -229,6 +229,12 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
 h2 em,h1 em{color:var(--yellow)}
 .stage .hero h1{font-size:clamp(52px,7.2vw,90px)}
 .btn{background:#2446D8;color:#fff}
+/* hero headline: two clean lines on desktop, never five */
+.stage .hero{grid-template-columns:1.3fr .7fr}
+.stage .hero h1{font-size:clamp(44px,4.8vw,62px);line-height:.92;text-wrap:initial}
+.stage .hero h1 .nb{white-space:nowrap}
+@media (max-width:900px){.stage .hero{grid-template-columns:1fr}.stage .hero h1{font-size:clamp(46px,12vw,64px)}}
+.nav .navr{display:flex;gap:10px;align-items:center}.nav a.nl{color:#fff;text-decoration:none;font-weight:600;font-size:14px;opacity:.85}
 </style>
 <meta name="apple-itunes-app" content="app-id=6822148315">
 </head>
@@ -238,13 +244,13 @@ h2 em,h1 em{color:var(--yellow)}
 <div class="wrap">
   <nav class="nav" aria-label="Main">
     <div class="brand"><svg class="mark" viewBox="26 52 148 96" aria-hidden="true"><polygon points="30,56 66,56 94,100 66,144 30,144 58,100" fill="var(--accent)"/><polygon points="170,56 134,56 106,100 134,144 170,144 142,100" fill="var(--ink)"/></svg><span style="color:inherit">Matchup<span>Room</span></span></div>
-    <a class="cta-sm solid" href="https://app.matchuproom.com">Open the app</a>
+    <span class="navr"><a class="nl" href="/articles">Articles</a><a class="cta-sm solid" href="https://app.matchuproom.com">Open the app</a></span>
   </nav>
 
   <header class="hero">
     <div>
       <p class="eyebrow">Fantasy football · Start/Sit · Waivers · Trades · Win odds</p>
-      <h1>Sunday gets decided in <em>the Room.</em></h1>
+      <h1>Sunday gets decided <span class="nb">in <em>the Room.</em></span></h1>
       <p class="sub">Connect your Sleeper or ESPN league and the Room tells you who to bench, who to start, who to pick up and which trades help, every week, with the football reasons behind every call.</p>
       <div class="ctas">
         <a class="btn big appstore" data-appstore hidden href="https://apps.apple.com/us/app/id6822148315">Download on the App Store</a>
