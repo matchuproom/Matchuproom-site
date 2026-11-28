@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/articles", "destination": "https://app.matchuproom.com/articles" },
+    { "source": "/articles/:path*", "destination": "https://app.matchuproom.com/articles/:path*" }
+  ]
+}
